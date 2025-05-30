@@ -1,58 +1,58 @@
-# Projeto-Livre---Orienta-o-a-Objetos
-# Controle Financeiro da Gih
+# 💰 Controle Financeiro da Gih
 
-## Definição do problema
+Este projeto é um sistema de controle financeiro pessoal, desenvolvido para a disciplina de **Orientação a Objetos (01/2025)** na **Faculdade UnB Gama**. Ele permite gerenciar receitas e despesas com base em categorias, datas e descrições, exibindo o saldo total atualizado.
 
-Este projeto tem como objetivo desenvolver um sistema para controle financeiro pessoal que permita ao usuário registrar receitas e despesas, consultar o saldo atual e gerenciar suas transações financeiras de forma simples e eficiente. O sistema deve possibilitar adicionar, visualizar e excluir transações, além de salvar e carregar os dados localmente.
+## 🚀 Funcionalidades
 
----
-
-## Casos de Uso
-
-1. **Adicionar Transação**  
-   O usuário pode adicionar uma nova receita ou despesa, informando descrição, valor, data, categoria e tipo (receita ou despesa).
-
-2. **Visualizar Transações**  
-   O usuário pode visualizar uma lista de todas as transações cadastradas, mostrando descrição, valor, tipo e categoria.
-
-3. **Excluir Transação**  
-   O usuário pode excluir uma transação previamente adicionada, caso se arrependa ou queira corrigir um erro.
-
-4. **Visualizar Saldo**  
-   O sistema calcula e exibe o saldo atual, considerando receitas como valores positivos e despesas como valores negativos.
-
-5. **Salvar Dados**  
-   O sistema salva as transações em arquivo local usando serialização (pickle), para persistência entre execuções.
-
-6. **Carregar Dados**  
-   Ao iniciar, o sistema carrega as transações salvas previamente, recuperando o estado anterior.
+- ✅ Cadastro de receitas e despesas
+- ✅ Classificação por categoria e data
+- ✅ Visualização das transações organizadas por mês
+- ✅ Exclusão de transações
+- ✅ Cálculo automático do saldo final
+- ✅ Persistência de dados (serialização com `pickle`)
+- ✅ Interface web com Flask
 
 ---
 
-## Tecnologias Utilizadas
+## 🧠 Casos de Uso
 
-- Linguagem Python  
-- Framework Flask (interface web)  
-- Serialização com pickle  
-- Front-end HTML, CSS e JavaScript (simples e responsivo)
+### 📌 Caso 1: Adicionar Receita ou Despesa
+- **Ator**: Usuário
+- **Descrição**: O usuário insere uma nova transação (receita ou despesa) com valor, data, categoria e descrição.
 
----
+### 📌 Caso 2: Visualizar Transações
+- **Ator**: Usuário
+- **Descrição**: O sistema exibe as transações agrupadas por mês, com tipo, valor e categoria.
 
-## Modelagem Orientada a Objetos
-
-- Classes principais: `Transacao` (superclasse abstrata), `Receita`, `Despesa`, `Carteira`, `Categoria`  
-- Uso de herança: Receita e Despesa herdam de Transacao  
-- Polimorfismo: método `get_valor()` com comportamento específico em Receita e Despesa  
-- Composição: Carteira contém várias transações  
-- Associação: Categoria associada às transações  
+### 📌 Caso 3: Excluir Transação
+- **Ator**: Usuário
+- **Descrição**: O usuário pode excluir uma transação específica clicando em “Excluir”.
 
 ---
 
-## Instruções para execução
+## 🧱 Estrutura de Classes
 
-1. Instalar dependências com `pip install flask`  
-2. Executar `python main.py`  
-3. Acessar `http://localhost:5000` no navegador
+package/
+│
+├── carteira.py      # Classe controladora principal (Carteira)
+├── categoria.py     # Classe para lidar com categorias
+├── receita.py       # Subclasse de Transação para receitas
+├── despesa.py       # Subclasse de Transação para despesas
+├── mixin.py         # Classe mixin (ex: salvar em arquivo ou exibir dados)
 
----
+## 🔄 Paradigmas e Padrões Usados
+-✅ Herança: Receita e Despesa herdam de uma classe base Transacao
 
+-✅ Polimorfismo: Métodos como get_valor() são sobrescritos ou usados de forma uniforme
+
+-✅ Composição forte: Carteira contém várias Transacao
+
+-✅ Associação fraca: Transacao utiliza uma instância de Categoria
+
+-✅ Mixin: Classe auxiliar para salvar ou exportar dados
+
+## 💾 Serialização
+Os dados das transações são salvos e carregados automaticamente no arquivo data/dados.pkl utilizando o módulo pickle, garantindo que o histórico do usuário seja preservado.
+
+## 🖥️ Interface
+Apesar do requisito solicitar interface desktop, esta versão utiliza o Flask para criar uma interface web simples e responsiva, que pode ser adaptada para desktop futuramente com PyQt5 ou Tkinter.
